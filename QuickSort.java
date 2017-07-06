@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 class QuickSort {
      
     private int array[];
@@ -47,13 +51,30 @@ class QuickSort {
     }
      
     public static void main(String a[]){
-         
-        QuickSort sorter = new QuickSort();
-        int[] input = {24,2,45,20,56,75,2,56,99,53,12};
-        sorter.sort(input);
-        for(int i:input){
-            System.out.print(i);
-            System.out.print(" ");
+        while (true) {
+            BufferedReader tastatura = new BufferedReader(new InputStreamReader(System.in));
+            String sir_intrare = "";
+            System.out.println("Introduceti un sir de numere: ");
+            try { sir_intrare = tastatura.readLine(); }
+            catch(IOException e) { sir_intrare = ""; }
+            if (sir_intrare != "") {
+                String[] strArray = sir_intrare.split(",");
+                int[] input = new int[strArray.length];
+                for(int i = 0; i < strArray.length; i++) {
+                    input[i] = Integer.parseInt(strArray[i]);
+                }
+
+                if (input.length > 0) {
+                    QuickSort sorter = new QuickSort();
+                    //int[] input = {24,2,45,20,56,75,2,56,99,53,12};
+                    sorter.sort(input);
+                    for(int i:input){
+                        System.out.print(i);
+                        System.out.print(" ");
+                    }
+                    System.out.println(" ");
+                } else System.out.println("Sir de intrare invalid!");
+            } else System.out.println("Sir de intrare invalid!");
         }
     }
 }
